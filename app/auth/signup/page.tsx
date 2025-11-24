@@ -1,33 +1,18 @@
-export default function Signin() {
-    return <div className="h-screen flex justify-center flex-col">
-        <div className="flex justify-center">
-        <a href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 ">
-                <div>
-                    <div className="px-10">
-                        <div className="text-3xl font-extrabold">
-                            Sign in
-                        </div>
-                    </div>
-                    <div className="pt-2">
-                        <LabelledInput label="Username" placeholder="harkirat@gmail.com" />
-                        <LabelledInput label="Password" type={"password"} placeholder="123456" />
-                        <button type="button" className="mt-8 w-full text-white bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Sign in</button>
-                    </div>
-                </div>
-            </a>
-        </div>
+import axios from "axios";
+
+export default async function Signin() {
+     const respponce = await axios.get("http://localhost:3000/auth/users/details");
+     await new Promise(Response => setTimeout(Response,3000));
+     const data = respponce.data;
+     console.log(data);
+     return   (
+    <div className="p-4">
+      <h1 className="text-xl font-semibold">Todo Details</h1>
+
+      <pre>{JSON.stringify(data, null, 1)}</pre>
+
     </div>
+  );
 }
 
-interface LabelledInputType {
-    label: string;
-    placeholder: string;
-    type?: string;
-}
 
-function LabelledInput({ label, placeholder, type }: LabelledInputType) {
-    return <div>
-        <label className="block mb-2 text-sm text-black font-semibold pt-4">{label}</label>
-        <input type={type || "text"} id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder={placeholder} required />
-    </div>
-}
