@@ -1,9 +1,27 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <h1>Home Page Next.js</h1>
+    <div className="min-h-screen bg-black text-white flex flex-col items-center">
+      <div className="mt-16 bg-white text-black p-10 rounded-xl shadow-lg w-[90%] max-w-xl">
+        <h1 className="text-3xl font-semibold text-center">Welcome to Todo App</h1>
+
+        <div className="flex gap-4 justify-center mt-8">
+          <Link 
+            href="/auth//signin" 
+            className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition"
+          >
+            Sign in to Todo
+          </Link>
+
+          <Link 
+            href="/auth//signup" 
+            className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-900 transition"
+          >
+            Sign up to Todo
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
